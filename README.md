@@ -32,6 +32,7 @@ $ docker compose up -d
 ```
 $ docker compose exec app composer install
 $ docker compose exec app php artisan key:generate
+$ docker compose exec app php artisan jwt:secret
 $ docker compose exec app php artisan storage:link
 $ docker compose exec app chmod -R 777 storage bootstrap/cache
 $ docker compose exec app php artisan migrate
@@ -51,7 +52,7 @@ Es necesario establecer conexión y crear la base de datos con el nombre de su p
 1. **Requisitos del servidor web:**
   - Aplicaciones como Laragom, Xampp o Wamp.
   - Servidor web como Apache o Nginx.
-  - PHP versión 7.3 o superior (de preferencia 8.2).
+  - PHP versión 8.2 o superior.
   - Extensión PHP necesaria para Laravel (por ejemplo, OpenSSL, PDO, Mbstring, Tokenizer, XML, Ctype y JSON).
 
 
@@ -63,7 +64,9 @@ Es necesario establecer conexión y crear la base de datos con el nombre de su p
 Para ejecutar el backend, es necesario ubicarse sobre la carpeta donde se encuentra seteado el backend y ejecutar los siguientes comandos:
 ```bash
 $ composer install
+$ cp .env.example .env
 $ php artisan key:generate
+$ php artisan jwt:secret
 $ php artisan storage:link
 $ chmod -R 777 storage bootstrap/cache
 $ php artisan migrate
