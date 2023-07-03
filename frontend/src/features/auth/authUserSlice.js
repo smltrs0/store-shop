@@ -8,7 +8,7 @@ const userToken = localStorage.getItem('userToken')
 const initialState = {
   userInfo: userToken,
   accessToken: null,
-  isLoggedIn: true,
+  isLoggedIn: false,
   isLoading: false,
   error: {
     message: false,
@@ -24,6 +24,10 @@ const authUserSlice = createSlice({
       state.accessToken = null
       state.userInfo = null
       localStorage.removeItem('userToken')
+    },
+    setUsetToken: (state, action) => {
+      state.userInfo = action.payload;
+      state.isLoggedIn = true;
     }
   },
   extraReducers: (builder) => {
@@ -45,7 +49,7 @@ const authUserSlice = createSlice({
   },
 });
 
-export const { closeSession } = authUserSlice.actions;
+export const { closeSession, setUsetToken } = authUserSlice.actions;
 
 export default authUserSlice.reducer;
 

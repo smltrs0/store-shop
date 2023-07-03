@@ -1,22 +1,18 @@
 import { useState } from "react";
 
-const RegisterForm = ({ onSubmit, error }) => {
-    const [userdata, setUserdata] = useState({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: ''
-    });
+const RegisterForm = ({ onSubmit, error, handlerDataFor, dataForm }) => {
+   
+
   
-    const handlenameChange = (e) => setUserdata({ ...userdata, name: e.target.value });
-    const handleEmailChange = (e) => setUserdata({ ...userdata, email: e.target.value });
-    const handlePasswordChange = (e) => setUserdata({ ...userdata, password: e.target.value });
+    const handlenameChange = (e) => handlerDataFor({ ...dataForm, name: e.target.value });
+    const handleEmailChange = (e) => handlerDataFor({ ...dataForm, email: e.target.value });
+    const handlePasswordChange = (e) => handlerDataFor({ ...dataForm, password: e.target.value });
     const handleConfirmPasswordChange = (e) =>
-      setUserdata({ ...userdata, password_confirmation: e.target.value });
+    handlerDataFor({ ...dataForm, password_confirmation: e.target.value });
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      onSubmit(userdata);
+      onSubmit(dataForm);
     };
   
     return (
@@ -29,7 +25,7 @@ const RegisterForm = ({ onSubmit, error }) => {
             type="text"
             id="name"
             name="name"
-            value={userdata.name}
+            value={dataForm.name}
             onChange={handlenameChange}
             className="w-full border border-gray-300 p-2 rounded"
           />
@@ -42,7 +38,7 @@ const RegisterForm = ({ onSubmit, error }) => {
             type="email"
             id="email"
             name="email"
-            value={userdata.email}
+            value={dataForm.email}
             onChange={handleEmailChange}
             className="w-full border border-gray-300 p-2 rounded"
           />
@@ -55,7 +51,7 @@ const RegisterForm = ({ onSubmit, error }) => {
             type="password"
             id="password"
             name="password"
-            value={userdata.password}
+            value={dataForm.password}
             onChange={handlePasswordChange}
             className="w-full border border-gray-300 p-2 rounded"
           />
@@ -68,7 +64,7 @@ const RegisterForm = ({ onSubmit, error }) => {
             type="password"
             id="confirmPassword"
             name="confirmPassword"
-            value={userdata.password_confirmation}
+            value={dataForm.password_confirmation}
             onChange={handleConfirmPasswordChange}
             className="w-full border border-gray-300 p-2 rounded"
           />

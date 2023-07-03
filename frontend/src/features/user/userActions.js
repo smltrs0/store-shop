@@ -8,16 +8,16 @@ export const createUser = createAsyncThunk(
   'usuarios/crear',
   async ({ name, email, password, password_confirmation }, { rejectWithValue }) => {
     try {
-      const respuesta = await axios.post(API_URL
+      return await axios.post(API_URL
         + "register", {
         name,
         email,
         password,
         password_confirmation,
       });
-      return respuesta.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      const errorMessage = Object.values(JSON.parse(error)).join(',');
+      return rejectWithValue(errorMessage);
     }
   }
 );
